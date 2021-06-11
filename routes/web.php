@@ -22,7 +22,8 @@ $router->get('/', function () use ($router) {
 $router->group(['prefix' => 'api'], function () use ($router) {
     $router->get('/books', ['uses' => 'BookController@getUsers']);
 });
-// more simple routes
+
+//Books
 $router->get('/books', 'BookController@index'); // Get all books from Books Service
 $router->post('/books', 'BookController@add'); // Create a new book from Books Service
 $router->get('/books/{id}', 'BookController@show'); // Get the book info based on book id from Books Service

@@ -30,7 +30,7 @@ class BookController extends Controller
         $rules = [
             'bookname' => 'required|max:150',
             'yearpublish' => 'required|max:150',
-            'authorid' => 'required|not_in:0',
+            //'authorid' => 'required|not_in:0',
         ];
         $this->validate($request, $rules);
         $books = Book::create($request->all());
@@ -69,7 +69,7 @@ class BookController extends Controller
         $rules = [
             'bookname' => 'required|max:150',
             'yearpublish' => 'required|max:150',
-            'authorid' => 'required|not_in:0',
+            //'authorid' => 'required|not_in:0',
         ];
         $this->validate($request, $rules);
 
