@@ -1,4 +1,6 @@
 <?php
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BookController;
 
 /** @var \Laravel\Lumen\Routing\Router $router */
 
