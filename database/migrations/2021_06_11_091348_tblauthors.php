@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Tblbooks extends Migration
+class Tblauthors extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class Tblbooks extends Migration
      */
     public function up()
     {
-        Schema::create('tblbooks', function (Blueprint $table) {
+        Schema::create('tblauthors', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('bookname');
-            $table->integer('yearpublish');
+            $table->string('fullname');
+            $table->string('gender', 10);
+            $table->date('birthday');
         });
     }
 

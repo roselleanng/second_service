@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use App\Models\Book;
+use App\Models\Author;
 use App\Traits\ApiResponser;
 
-class BookController extends Controller
+class AuthorController extends Controller
 {
     use ApiResponser;
     private $request;
@@ -22,20 +22,20 @@ class BookController extends Controller
      */
     public function index()
     {
-        $books = Book::all();
-        return $this->successResponse($books);
+        $authors = Author::all();
+        return $this->successResponse($authors);
     }
     public function add(Request $request)
     {
         $rules = [
-            'bookname' => 'required|max:150',
-            'yearpublish' => 'required|max:150',
-            //'authorid' => 'required|not_in:0',
+            'fullname' => 'required|max:150',
+            'gender' => 'required|in:Male,Female',
+            'birthday' => 'required',
         ];
         $this->validate($request, $rules);
-        $books = Book::create($request->all());
+        $authors = Author::create($request->all());
         return $this->successResponse(
-            $books,
+            $authors,
             Response::HTTP_CREATED
         );
     }
@@ -45,8 +45,8 @@ class BookController extends Controller
      */
     public function show($id)
     {
-        $books = Book::findOrFail($id);
-        return $this->successResponse($books);
+        $authors = Author::findOrFail($id);
+        return $this->successResponse($authors);
 
         // old code
         /*
@@ -67,21 +67,21 @@ class BookController extends Controller
     public function update(Request $request, $id)
     {
         $rules = [
-            'bookname' => 'required|max:150',
-            'yearpublish' => 'required|max:150',
-            //'authorid' => 'required|not_in:0',
+            'fullname' => 'required|max:150',
+            'gender' => 'required|in:Male,Female',
+            'birthday' => 'required',
         ];
         $this->validate($request, $rules);
+        $authors = Author::findOrFail($id);
 
-        $books = Book::findOrFail($id);
-
-        $books->fill($request->all());
+        $authors->fill($request->all());
         // if no changes happen
-        if ($books->isClean()) {
-            return $this->errorResponse('At least one value must change', Response::HTTP_UNPROCESSABLE_ENTITY);
+        if ($authors->isClean()) {
+            return $this->errorResponse('At least one value must
+change', Response::HTTP_UNPROCESSABLE_ENTITY);
         }
-        $books->save();
-        return $this->successResponse($books);
+        $authors->save();
+        return $this->successResponse($authors);
 
         // old code
         /*
@@ -99,7 +99,8 @@ class BookController extends Controller
         return $this->successResponse($user);
         }
         {
-        return $this->errorResponse('User ID Does Not Exists', Response::HTTP_NOT_FOUND);
+        return $this->errorResponse('User ID Does Not Exists',
+        Response::HTTP_NOT_FOUND);
         }
         */
     }
@@ -109,9 +110,9 @@ class BookController extends Controller
      */
     public function delete($id)
     {
-        $books = Book::findOrFail($id);
-        $books->delete();
-        return $this->successResponse($books);
+        $authors = Author::findOrFail($id);
+        $authors->delete();
+        return $this->successResponse($authors);
         // old code
         /*
         $user = User::where('userid', $id)->first();

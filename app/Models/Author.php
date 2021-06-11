@@ -9,14 +9,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Lumen\Auth\Authorizable;
 
-class Book extends Model implements AuthenticatableContract, AuthorizableContract
+class Author extends Model implements AuthenticatableContract, AuthorizableContract
 {
     use Authenticatable, Authorizable, HasFactory;
     public $timestamps = false;
     
     protected $primaryKey = 'id';
     
-    protected $table = 'tblbooks';
+    protected $table = 'tblauthors';
 
     /**
      * The attributes that are mass assignable.
@@ -24,7 +24,7 @@ class Book extends Model implements AuthenticatableContract, AuthorizableContrac
      * @var array
      */
     protected $fillable = [
-        'bookname', 'yearpublish',
+        'fullname', 'gender', 'birthday',
     ];
 
     /**
