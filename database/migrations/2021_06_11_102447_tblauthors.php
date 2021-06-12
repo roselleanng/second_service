@@ -14,7 +14,7 @@ class Tblauthors extends Migration
     public function up()
     {
         Schema::create('tblauthors', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('authorid');
             $table->string('fullname');
             $table->string('gender', 10);
             $table->date('birthday');

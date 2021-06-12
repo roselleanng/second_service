@@ -77,8 +77,7 @@ class AuthorController extends Controller
         $authors->fill($request->all());
         // if no changes happen
         if ($authors->isClean()) {
-            return $this->errorResponse('At least one value must
-change', Response::HTTP_UNPROCESSABLE_ENTITY);
+            return $this->errorResponse('At least one value must change', Response::HTTP_UNPROCESSABLE_ENTITY);
         }
         $authors->save();
         return $this->successResponse($authors);

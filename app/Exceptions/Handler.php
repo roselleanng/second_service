@@ -62,9 +62,7 @@ class Handler extends ExceptionHandler
         // instance not found
         if ($exception instanceof ModelNotFoundException) {
             $model = strtolower(class_basename($exception->getModel()));
-            return $this->errorResponse(
-                "Does not exist any instance of {$model} with the given id", Response::HTTP_NOT_FOUND
-            );
+            return $this->errorResponse("Does not exist any instance of {$model} with the given id", Response::HTTP_NOT_FOUND);
         }
         // validation exception
         if ($exception instanceof ValidationException) {
@@ -77,10 +75,7 @@ class Handler extends ExceptionHandler
 
         // access to forbidden
         if ($exception instanceof AuthorizationException) {
-            return $this->errorResponse(
-                $exception->getMessage(),
-                Response::HTTP_FORBIDDEN
-            );
+            return $this->errorResponse($exception->getMessage(),Response::HTTP_FORBIDDEN);
         }
         // unauthorized access
         if ($exception instanceof AuthenticationException) {
@@ -94,9 +89,6 @@ class Handler extends ExceptionHandler
         if (env('APP_DEBUG', false)) {
             return parent::render($request, $exception);
         }
-        return $this->errorResponse(
-            'Unexpected error. Try later',
-            Response::HTTP_INTERNAL_SERVER_ERROR
-        );
+        return $this->errorResponse('Unexpected error. Try later',Response::HTTP_INTERNAL_SERVER_ERROR);
     }
 }

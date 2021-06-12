@@ -14,7 +14,7 @@ class Author extends Model implements AuthenticatableContract, AuthorizableContr
     use Authenticatable, Authorizable, HasFactory;
     public $timestamps = false;
     
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'authorid';
     
     protected $table = 'tblauthors';
 
